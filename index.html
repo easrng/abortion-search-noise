@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Abortion Search Noise Generator</title>
+  <script>
+const searches = [
+  "Abortion Clinics near me",
+  "Where can I get an abortion",
+  "Planned Parenthood locations",
+  "Abortion Clinics",
+  "Abortion Clinic",
+  "Abortion Clinic near me"
+]
+
+function start(){
+  const win=window.open("","searchnoisegenerator");
+  if(!win) return alert("Please enable popups.")
+  starter.outerHTML="Running."
+  setInterval(function () {
+    const engine=Math.random();
+    let url="https://www.google.com/search?hl=en&q=";
+    if(engine<0.5) url="https://www.bing.com/search?q="
+    if(engine<0.25) url="https://search.yahoo.com/search?p="
+    if(engine<0.125) url="https://duckduckgo.com/?q="
+    let search = searches[Math.round(Math.random()*(searches.length-1))]
+    if(Math.random()<0.5) search=search.toLowerCase()
+    window.open(url+encodeURIComponent (search), "searchnoisegenerator")
+  }, 1000*60)
+}
+</script>
+<link rel="stylesheet" href="https://unpkg.com/marx-css/css/marx.min.css">
+</head>
+<body>
+<main>
+<h1>Abortion Search Noise Generator</h1>
+<button onclick="start()" id="starter">Start</button><br><br><p>
+You must fully disable your popup blocker for this page to work properly. Once started, this page will search for abortions related things once every minute, hopefully adding noise to data about who is searching for abortions. You should do this in a separate browser profile with no tracker blocking for maximum impact, the tracking is the point.</p>
+<br><br>
+<hr>
+Made by <a href="https://easrng.net">easrng</a>, inspired by <a href="https://hackers.town/@thegibson/108249966843905736">a post by @thegibson@hackers.town</a>
+</main>
+</body>
+</html>
